@@ -1,0 +1,58 @@
+buildscript {
+    repositories {
+        maven { url "http://repo.spring.io/libs-release" }
+        mavenLocal()
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:1.1.10.RELEASE")
+    }
+}
+
+configurations.all {
+
+exclude module: 'slf4j-log4j12'
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'spring-boot'
+
+jar {
+    baseName = 'myvote'
+    version =  '0.1.0'
+}
+
+repositories {
+    mavenLocal()
+    mavenCentral()
+    maven { url "http://repo.spring.io/libs-release" }
+}
+
+dependencies {
+    compile("org.springframework.boot:spring-boot-starter-web")
+	compile("org.springframework.boot:spring-boot-starter-security")
+	compile("org.springframework.boot:spring-boot-starter-data-mongodb")
+	compile("org.apache.kafka:kafka_2.10:0.8.2.1")
+
+    //compile("org.springframework:spring-context-support:4.1.5.RELEASE")
+	//compile("org.springframework:spring-context-support:4.1.5.RELEASE")
+	//compile("org.springframework.boot:spring-boot-starter-web:1.2.1.RELEASE")
+	//testCompile("junit:junit")
+    //compile("org.springframework.boot:spring-boot-starter-web:1.2.1.RELEASE")
+    //compile("org.springframework.boot:spring-boot-starter-security")
+    //compile("org.scala-lang:scala-library:2.9.1.RC1")
+    //compile("org.webjars:bootstrap:3.1.1")
+    //compile("org.springframework.boot:spring-boot-starter-data-mongodb")
+    //compile("org.apache.kafka:kafka_2.10:0.8.2.1")
+    //compile("org.springframework.boot:spring-boot-starter-web")
+    //compile("org.mongodb:mongo-java-driver:2.12.4")
+    //compile("org.springframework:spring-context-support:4.1.5.RELEASE")
+    //testCompile("org.springframework.boot:spring-boot-starter-test")
+    testCompile("junit:junit")
+}
+
+task wrapper(type: Wrapper) {
+    gradleVersion = '2.1'
+}
